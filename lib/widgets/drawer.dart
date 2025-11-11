@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kick_street_flutter/menu.dart';
+import 'package:kick_street_flutter/product_form.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -36,7 +37,13 @@ class MenuDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.post_add),
-            title: const Text("Add Product"),
+            title: const Text("Create Product"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProductFormPage()),
+              );
+            },
           ),
         ],
       ),
