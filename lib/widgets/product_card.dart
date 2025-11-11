@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:kick_street_flutter/menu.dart';
-import 'package:kick_street_flutter/product_form.dart';
+import 'package:kick_street_flutter/screens/menu.dart';
+import 'package:kick_street_flutter/screens/product_form.dart';
 
 class ItemCard extends StatelessWidget {
   final ItemHomepage item; 
