@@ -47,6 +47,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   if (value == null || value.isEmpty) {
                     return "Product name cannot be empty!";
                   }
+
                   return null;
                 },
               ),
@@ -77,7 +78,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     return "Invalid product price!";
                   }
 
-
                   if (price <= 0) {
                     return "Invalid product price!";
                   }
@@ -89,6 +89,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                maxLines: 5,
                 decoration: InputDecoration(
                   hintText: "Product Description",
                   labelText: "Product Description",
@@ -146,6 +147,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           );
                         }
                       );
+                      _formkey.currentState!.reset();
                     }
                   }, 
                   child: const Text(
