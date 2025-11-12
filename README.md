@@ -1,3 +1,30 @@
+# ❓ Assignment 8 Questions
+Berikut adalah jawaban untuk pertanyaan-pertanyaan pada Tugas Individu 8.
+
+## `Navigator.push()` vs `Navigator.pushReplacement()`
+
+`Navigator.push()` hanya "menimpa" sebuah halaman ke atas stack. Pengguna dapat menekan tombol "kembali" untuk kembali ke halaman pertama.
+
+`Navigator.pushReplacement()` "mengganti" halaman dengan halaman baru. Pengguna tidak akan bisa menekan tombol "kembali" untuk kembali ke halaman pertama.
+
+## Hiearchy Widgets
+
+Hierarchy widgets memudahkan untuk menambahkan komponen komponen seperti `AppBar` dan `Drawer`. `Scaffold` menyediakan kerangka untuk menyusun komponen-komponen ini. Hal ini membuat tampilan menjadi konsisten di setiap halaman.
+
+## `Padding`, `SingleChildScrollView`, `ListView`
+
+`Padding` digunakan untuk menambahkan "bantalan" atau suatu ruang antara sisi dari beberapa widget. Hal ini digunakan untuk estetika. Bisa dilihat di `product_form.dart` untuk memberikan ruang antara input.
+
+`SingleChildScrollView` membuat suatu widget bisa di-scroll oleh pengguna. Penting untuk mengurus widget yang overflow dan ada di luar dari layar. Contohnya juga ada di `product_form.dart`. Input yang cukup banyak membuat masalah overflow dan dapat diselesaikan dengan melakukan scroll pada layar.
+
+`ListView` mirip dengan `SingleChildScrollView`. Namun, `ListView` digunakan untuk banyak child.
+
+## Konsistensi Warna
+
+Dapat dilakukan secara manual dengan menggunakan `Color` atau `Colors`. Dengan menggunakan warna yang konsisten, setiap widget penting diberikan value yang sama.
+
+Dapat juga dilakukan secara otomatis dengan menggunakan `ThemeData` untuk memastikan konsistensi di seluruh widget di aplikasi.
+
 # ❓ Assignment 7 Questions
 Berikut adalah jawaban untuk pertanyaan-pertanyaan pada Tugas Individu 7.
 
