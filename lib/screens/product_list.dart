@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kick_street_flutter/models/product.dart';
+import 'package:kick_street_flutter/screens/product_detail.dart';
 import 'package:kick_street_flutter/widgets/drawer.dart';
 import 'package:kick_street_flutter/widgets/product_card.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +14,14 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
-  Future<List<Product>> fetchNews(CookieRequest request) async {    
-    final response = await request.get("https://valerian-hizkia-kick-street.pbp.cs.ui.ac.id/json/");
-    
+  Future<List<Product>> fetchNews(CookieRequest request) async {
+    final response = await request.get(
+      "https://valerian-hizkia-kick-street.pbp.cs.ui.ac.id/json/",
+    );
+
     // Decode response to json format
     var data = response;
-    
+
     // Convert json data to NewsEntry objects
     List<Product> listNews = [];
     for (var d in data) {
@@ -33,9 +36,7 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Product List'),
-      ),
+      appBar: AppBar(title: const Text('Product List')),
       drawer: const MenuDrawer(),
       body: FutureBuilder(
         future: fetchNews(request),
@@ -59,14 +60,14 @@ class _ProductListPageState extends State<ProductListPage> {
                 itemBuilder: (_, index) => ProductCard(
                   product: snapshot.data![index],
                   onTap: () {
-                    // Show a snackbar when news card is clicked
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        SnackBar(
-                          content: Text("You clicked on ${snapshot.data![index].name}"),
-                        ),
-                      );
+                    // Navigate to news detail page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProductDetailPage(product: snapshot.data![index]),
+                      ),
+                    );
                   },
                 ),
               );
