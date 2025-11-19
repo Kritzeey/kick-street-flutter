@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kick_street_flutter/screens/menu.dart';
 import 'package:kick_street_flutter/screens/product_form.dart';
+import 'package:kick_street_flutter/screens/product_list.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -13,16 +14,15 @@ class MenuDrawer extends StatelessWidget {
           const DrawerHeader(
             decoration: BoxDecoration(color: Colors.blue),
             child: Center(
-              child: 
-                Text(
-                  "Kick Street",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+              child: Text(
+                "Kick Street",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
+              ),
             ),
           ),
           ListTile(
@@ -42,6 +42,18 @@ class MenuDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProductFormPage()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_bag),
+            title: const Text("Product List"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProductListPage(),
+                ),
               );
             },
           ),

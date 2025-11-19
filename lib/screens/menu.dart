@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kick_street_flutter/widgets/product_card.dart';
+import 'package:kick_street_flutter/widgets/buttons.dart';
 import 'package:kick_street_flutter/widgets/drawer.dart';
 
 class MyHomePage extends StatelessWidget {

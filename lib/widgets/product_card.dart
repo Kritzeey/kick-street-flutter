@@ -1,51 +1,81 @@
-
 import 'package:flutter/material.dart';
-import 'package:kick_street_flutter/screens/menu.dart';
-import 'package:kick_street_flutter/screens/product_form.dart';
+import 'package:kick_street_flutter/models/product.dart';
 
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item; 
+class ProductCard extends StatelessWidget {
+  final Product product;
+  final VoidCallback onTap;
 
-  const ItemCard(this.item, {super.key}); 
+  const ProductCard({super.key, required this.product, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Color(item.color),
-      borderRadius: BorderRadius.circular(12),
-
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-            );
-
-          if (item.name == "Create Product") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProductFormPage()),
-            );
-          }
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
+        onTap: onTap,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            side: BorderSide(color: Colors.grey.shade300),
+          ),
+          elevation: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 30.0,
+                // Thumbnail
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: Image.network(
+                    'https://valerian-hizkia-kick-street.pbp.cs.ui.ac.id/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 150,
+                      color: Colors.grey[300],
+                      child: const Center(child: Icon(Icons.broken_image)),
+                    ),
+                  ),
                 ),
-                const Padding(padding: EdgeInsets.all(3)),
+                const SizedBox(height: 8),
+
+                // Name
                 Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
+                  product.name,
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                const SizedBox(height: 6),
+
+                // Category
+                Text('Category: ${product.category}'),
+                const SizedBox(height: 6),
+
+                // Content preview
+                Text(
+                  product.description.length > 100
+                      ? '${product.description.substring(0, 100)}...'
+                      : product.description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.black54),
+                ),
+                const SizedBox(height: 6),
+
+                // Featured indicator
+                if (product.isFeatured)
+                  const Text(
+                    'Featured',
+                    style: TextStyle(
+                      color: Colors.amber,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -54,4 +84,3 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
- 
